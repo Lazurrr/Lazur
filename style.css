@@ -1,9 +1,9 @@
 :root {
-  --primary-color: #d14d84; /* Warna utama */
+  --primary-color: #d14d84;
   --background-color: #f4f4f9;
   --text-color: #333;
   --card-background: #ffffff;
-  --sidebar-bg: #2c3e50; /* Warna gelap untuk sidebar */
+  --sidebar-bg: #2c3e50;
   --sidebar-text: #ecf0f1;
   --border-radius: 8px;
   --shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -15,12 +15,11 @@
   padding: 0;
 }
 
-/* Penyesuaian untuk tampilan full height dan lebar viewport, serta mencegah scroll horizontal */
 html,
 body {
   height: 100%;
   width: 100%;
-  overflow-x: hidden; /* Mencegah scroll horizontal saat sidebar muncul */
+  overflow-x: hidden;
 }
 
 body {
@@ -28,37 +27,31 @@ body {
   background-color: var(--background-color);
   color: var(--text-color);
   line-height: 1.6;
-  display: flex; /* Menggunakan flexbox untuk memusatkan container */
+  display: flex;
   justify-content: center;
-  align-items: flex-start; /* Konten dimulai dari atas */
+  align-items: flex-start;
   min-height: 100vh;
-  padding: 20px; /* Padding di sekitar container utama */
-  font-size: 16px; /* Ukuran font dasar untuk seluruh body */
+  padding: 20px;
+  font-size: 16px;
 }
 
-/* Container utama yang menggunakan CSS Grid untuk tata letak */
 .container {
   display: grid;
-  /* Menentukan area grid: header menempati 2 kolom, sidebar dan main masing-masing 1 kolom.
-     Awalnya, kolom sidebar memiliki lebar 0px */
   grid-template-areas:
     "header header"
     "sidebar main";
-  grid-template-columns: 0px 1fr; /* Default: kolom sidebar 0px lebar, main content 1fr */
-  transition: grid-template-columns 0.3s ease-in-out; /* Transisi halus saat lebar kolom berubah */
-  width: 100%; /* Memenuhi seluruh lebar yang tersedia */
-  height: calc(
-    100vh - 40px
-  ); /* Sesuaikan tinggi container (100vh - 2*padding body) */
+  grid-template-columns: 0px 1fr;
+  transition: grid-template-columns 0.3s ease-in-out;
+  width: 100%;
+  height: calc(100vh - 40px);
   background-color: var(--card-background);
   border-radius: var(--border-radius);
   box-shadow: var(--shadow);
-  overflow: hidden; /* Pastikan konten tidak meluber */
+  overflow: hidden;
 }
 
-/* Saat kelas 'sidebar-open' ditambahkan ke container, sidebar akan muncul */
 .container.sidebar-open {
-  grid-template-columns: 250px 1fr; /* Sidebar mengambil 250px, main content didorong */
+  grid-template-columns: 250px 1fr;
 }
 
 .website-header {
@@ -69,7 +62,6 @@ body {
   text-align: center;
   border-bottom: 2px solid #a83a6c;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  /* Gaya untuk pemusatan teks di header */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -77,19 +69,18 @@ body {
 
 .website-header h1 {
   margin: 0;
-  font-size: 2.2em; /* Ukuran font desktop */
+  font-size: 2.2em;
 }
 
-/* Sidebar sekarang menjadi bagian dari grid dan akan "mendorong" konten */
 .sidebar {
-  grid-area: sidebar; /* Menempatkan di area 'sidebar' */
+  grid-area: sidebar;
   background-color: var(--sidebar-bg);
   color: var(--sidebar-text);
   padding: 20px 0;
-  display: flex; /* Mengatur konten internal sidebar */
+  display: flex;
   flex-direction: column;
   border-right: 1px solid rgba(255, 255, 255, 0.1);
-  overflow: hidden; /* Sembunyikan konten jika lebar kolom 0 */
+  overflow: hidden;
 }
 
 .sidebar nav ul {
@@ -111,13 +102,13 @@ body {
 }
 
 .main-content {
-  grid-area: main; /* Menempatkan di area 'main' */
+  grid-area: main;
   padding: 20px 30px;
   background-color: var(--background-color);
-  display: flex; /* Menggunakan flexbox untuk mengelola sections anak */
-  flex-direction: column; /* Anak-anak akan ditumpuk secara vertikal */
-  height: 100%; /* Pastikan main-content mengisi tingginya di grid */
-  overflow-y: auto; /* Aktifkan scrolling vertikal untuk konten utama */
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow-y: auto;
 }
 
 .main-content h2 {
@@ -127,14 +118,13 @@ body {
   padding-bottom: 10px;
 }
 
-/* Gaya untuk bagian intro */
 #intro-section {
-  display: flex; /* Menggunakan flexbox untuk konten intro */
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  height: 100%; /* Mengisi tinggi penuh main-content */
+  height: 100%;
   padding: 20px;
   background-color: var(--card-background);
   border-radius: var(--border-radius);
@@ -148,7 +138,6 @@ body {
   color: #666;
 }
 
-/* Gaya untuk tombol utama (Jalankan Rekomendasi Musik) */
 .primary-button {
   background-color: var(--primary-color);
   color: var(--sidebar-text);
@@ -166,17 +155,15 @@ body {
   transform: translateY(-2px);
 }
 
-/* Gaya untuk bagian rekomendasi musik dan detail sidebar */
 #music-recommendations,
 #sidebar-detail-content {
-  flex-grow: 1; /* Memungkinkan elemen untuk mengisi ruang vertikal yang tersedia */
-  width: 100%; /* Memastikan elemen mengisi seluruh lebar yang tersedia */
-  overflow-y: auto; /* Mengizinkan scrolling di dalam section jika kontennya terlalu panjang */
-  display: flex; /* Gunakan flexbox untuk konten internal */
+  flex-grow: 1;
+  width: 100%;
+  overflow-y: auto;
+  display: flex;
   flex-direction: column;
 }
 
-/* Memastikan elemen yang memiliki kelas 'hidden' tidak memakan ruang sama sekali */
 #music-recommendations.hidden,
 #sidebar-detail-content.hidden,
 #intro-section.hidden {
@@ -184,50 +171,45 @@ body {
 }
 
 .music-list {
-  /* Mengubah grid-template-columns agar kartu musik tersusun menurun ke bawah */
-  grid-template-columns: 1fr; /* Setiap kartu akan mengisi seluruh lebar yang tersedia, membuatnya bertumpuk vertikal */
+  grid-template-columns: 1fr;
   gap: 20px;
-  /* Tambahan gaya untuk merapikan daftar */
-  list-style: none; /* Hapus bullet default jika ada */
+  list-style: none;
   padding: 0;
-  margin-top: 15px; /* Jarak dari judul 'Rekomendasi Musik' */
+  margin-top: 15px;
 }
 
-/* Gaya untuk elemen OL dalam music-list */
 .music-list ol {
-  padding-left: 0; /* Hapus padding default OL */
-  list-style: none; /* Hapus penomoran default browser */
+  padding-left: 0;
+  list-style: none;
 }
 
-/* Gaya untuk setiap item LI dalam daftar rekomendasi */
 .music-list ol li {
   background-color: var(--card-background);
   border-radius: var(--border-radius);
   box-shadow: var(--shadow);
-  padding: 15px 20px; /* Padding di dalam setiap item */
-  margin-bottom: 10px; /* Jarak antar item */
-  font-size: 1.1em; /* Ukuran font desktop */
+  padding: 15px 20px;
+  margin-bottom: 10px;
+  font-size: 1.1em;
   color: var(--text-color);
-  display: flex; /* Menggunakan flexbox untuk konten dalam li */
-  align-items: center; /* Pusatkan secara vertikal */
-  gap: 10px; /* Jarak antara nomor dan teks lagu */
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 #sidebar-detail-content #sidebar-content-placeholder {
-  /* Memastikan placeholder konten detail mengisi ruang yang tersedia */
   flex-grow: 1;
 }
 
 #sidebar-detail-content h3 {
   color: var(--primary-color);
   margin-bottom: 15px;
-  text-align: center; /* Judul keterangan menjadi tengah */
+  text-align: center;
 }
 
 #sidebar-detail-content p {
-  text-align: justify; /* Teks keterangan menjadi rata kanan kiri */
-  word-wrap: break-word; /* Memastikan teks panjang membungkus */
-  hyphens: auto; /* Memungkinkan hyphenation untuk word-wrap yang lebih baik */
+  text-align: justify;
+  word-wrap: break-word;
+  hyphens: auto;
 }
 
 #sidebar-detail-content ul {
@@ -235,148 +217,135 @@ body {
   padding-left: 20px;
 }
 
-/* Gaya untuk tombol "Kembali ke Rekomendasi" (sekarang relatif terhadap parent content) */
 .back-button {
-  display: none; /* Sembunyikan secara default */
+  display: none;
   background-color: var(--primary-color);
   color: var(--sidebar-text);
   border: none;
   padding: 10px 15px;
   border-radius: var(--border-radius);
   cursor: pointer;
-  font-size: 1em; /* Ukuran font desktop */
-  margin-bottom: 20px; /* Memberikan jarak dari konten di bawahnya */
+  font-size: 1em;
+  margin-bottom: 20px;
   transition: background-color 0.2s ease;
-  align-self: flex-start; /* Posisikan di kiri dalam flex container */
-  white-space: nowrap; /* Mencegah tombol pecah baris di desktop jika teks terlalu panjang */
-  position: static; /* Pastikan posisi static di desktop juga */
+  align-self: flex-start;
+  white-space: nowrap;
+  position: static;
 }
 
 .back-button:hover {
-  background-color: #a83a6c; /* Sedikit lebih gelap saat hover */
+  background-color: #a83a6c;
 }
 
-/* Kelas untuk menampilkan tombol kembali, dikontrol oleh JavaScript */
 .back-button.show {
   display: block;
 }
 
-/* Sidebar Toggle Button (posisi fixed di pojok kiri atas) */
 .sidebar-toggle {
-  display: block; /* Selalu tampil */
-  position: fixed; /* Posisi tetap di viewport */
-  top: 20px; /* Jarak dari atas */
-  left: 20px; /* Jarak dari kiri */
+  display: block;
+  position: fixed;
+  top: 20px;
+  left: 20px;
   background-color: var(--primary-color);
   color: var(--sidebar-text);
   border: none;
   padding: 10px 15px;
-  font-size: 1.5em; /* Ukuran font desktop */
+  font-size: 1.5em;
   cursor: pointer;
   border-radius: var(--border-radius);
-  z-index: 1001; /* Pastikan di atas elemen lain dan sidebar */
+  z-index: 1001;
   box-shadow: var(--shadow);
 }
 
-/* Media query untuk layar lebih kecil (tablet/mobile: overlay sidebar) */
 @media (max-width: 768px) {
   body {
-    padding: 10px; /* Kurangi padding body di layar kecil */
+    padding: 10px;
   }
 
   .container {
-    /* Kembali ke tata letak single column untuk mobile */
     grid-template-areas:
       "header"
       "main";
-    grid-template-columns: 1fr; /* Konten utama mengambil lebar penuh */
-    height: calc(100vh - 20px); /* Sesuaikan tinggi container di mobile */
-    transition: none; /* Nonaktifkan transisi grid pada mobile */
+    grid-template-columns: 1fr;
+    height: calc(100vh - 20px);
+    transition: none;
   }
 
-  /* Sidebar akan menggunakan posisi fixed dan transform untuk overlay di mobile */
   .sidebar {
-    position: fixed; /* Posisi tetap di viewport */
+    position: fixed;
     top: 0;
     left: 0;
-    height: 100vh; /* Mengambil seluruh tinggi viewport */
-    width: 250px; /* Lebar sidebar */
-    transform: translateX(
-      -100%
-    ); /* Sembunyikan sidebar di luar layar secara default */
-    transition: transform 0.3s ease-in-out; /* Transisi untuk efek slide */
-    z-index: 999; /* Pastikan sidebar di atas konten utama */
+    height: 100vh;
+    width: 250px;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+    z-index: 999;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
   }
 
-  /* Saat sidebar aktif di mobile, tampilkan dengan transform */
   .sidebar.active {
     transform: translateX(0);
   }
 
-  /* Penyesuaian ukuran font untuk mobile agar lebih seimbang dan mudah dibaca */
   .website-header h1 {
-    font-size: 1.6em; /* Ukuran H1 lebih kecil lagi untuk mobile */
+    font-size: 1.6em;
   }
 
   .main-content {
-    padding: 15px; /* Kurangi padding main-content di mobile */
+    padding: 15px;
   }
 
   .main-content h2 {
-    font-size: 1.2em; /* Ukuran H2 lebih kecil untuk mobile */
+    font-size: 1.2em;
     margin-bottom: 15px;
   }
 
   #intro-section p {
-    font-size: 0.9em; /* Sedikit lebih kecil dari desktop, tetap mudah dibaca */
+    font-size: 0.9em;
   }
 
   .primary-button {
-    padding: 8px 15px; /* Kurangi padding tombol utama */
-    font-size: 0.9em; /* Ukuran tombol utama disesuaikan */
+    padding: 8px 15px;
+    font-size: 0.9em;
   }
 
   .music-list ol li {
-    font-size: 0.9em; /* Ukuran font item daftar rekomendasi disesuaikan */
-    padding: 10px 15px; /* Padding item daftar dikurangi */
+    font-size: 0.9em;
+    padding: 10px 15px;
   }
 
   #sidebar-detail-content {
-    padding: 15px; /* Kurangi padding untuk memberi lebih banyak ruang bagi konten */
-    /* Memastikan konten mengisi lebar yang tersedia dan membungkus */
-    word-wrap: break-word; /* Wajib untuk teks panjang */
-    overflow-wrap: break-word; /* Alternatif modern */
-    hyphens: auto; /* Memungkinkan hyphenation */
+    padding: 15px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
   }
 
   #sidebar-detail-content h3 {
-    font-size: 1.1em; /* Sesuaikan ukuran judul di detail sidebar */
+    font-size: 1.1em;
     margin-bottom: 10px;
   }
 
   #sidebar-detail-content p,
   #sidebar-detail-content ul li {
-    font-size: 0.85em; /* Ukuran font teks keterangan disesuaikan */
-    line-height: 1.4; /* Sesuaikan line-height untuk keterbacaan */
+    font-size: 0.85em;
+    line-height: 1.4;
   }
 
-  /* Pastikan tombol tidak terlalu dekat dengan tepi di mobile */
   .sidebar-toggle {
     top: 10px;
     left: 10px;
-    font-size: 1em; /* Ukuran tombol toggle lebih kecil di mobile */
+    font-size: 1em;
     padding: 6px 10px;
   }
 
-  /* Penyesuaian ukuran tombol 'Kembali ke Rekomendasi' untuk mobile */
   .back-button {
-    padding: 6px 10px; /* Kurangi padding */
-    font-size: 0.85em; /* Kurangi ukuran font */
-    margin-bottom: 10px; /* Sesuaikan margin bawah */
-    white-space: normal; /* Memastikan teks tombol membungkus jika terlalu panjang */
-    text-align: center; /* Pusatkan teks di tombol jika membungkus */
-    width: fit-content; /* Biarkan lebar tombol menyesuaikan konten */
-    max-width: 100%; /* Pastikan tidak melebihi lebar parent */
+    padding: 6px 10px;
+    font-size: 0.85em;
+    margin-bottom: 10px;
+    white-space: normal;
+    text-align: center;
+    width: fit-content;
+    max-width: 100%;
   }
 }
