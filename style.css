@@ -1,0 +1,353 @@
+:root {
+  --primary-color: #d14d84; /* Warna utama */
+  --background-color: #f4f4f9;
+  --text-color: #333;
+  --card-background: #ffffff;
+  --sidebar-bg: #2c3e50; /* Warna gelap untuk sidebar */
+  --sidebar-text: #ecf0f1;
+  --border-radius: 8px;
+  --shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Penyesuaian untuk tampilan full height dan lebar viewport, serta mencegah scroll horizontal */
+html,
+body {
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden; /* Mencegah scroll horizontal saat sidebar muncul */
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  line-height: 1.6;
+  display: flex; /* Menggunakan flexbox untuk memusatkan container */
+  justify-content: center;
+  align-items: flex-start; /* Konten dimulai dari atas */
+  min-height: 100vh;
+  padding: 20px; /* Padding di sekitar container utama */
+}
+
+/* Container utama yang menggunakan CSS Grid untuk tata letak */
+.container {
+  display: grid;
+  /* Menentukan area grid: header menempati 2 kolom, sidebar dan main masing-masing 1 kolom.
+     Awalnya, kolom sidebar memiliki lebar 0px */
+  grid-template-areas:
+    "header header"
+    "sidebar main";
+  grid-template-columns: 0px 1fr; /* Default: kolom sidebar 0px lebar, main content 1fr */
+  transition: grid-template-columns 0.3s ease-in-out; /* Transisi halus saat lebar kolom berubah */
+  width: 100%; /* Memenuhi seluruh lebar yang tersedia */
+  height: calc(
+    100vh - 40px
+  ); /* Sesuaikan tinggi container (100vh - 2*padding body) */
+  background-color: var(--card-background);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  overflow: hidden; /* Pastikan konten tidak meluber */
+}
+
+/* Saat kelas 'sidebar-open' ditambahkan ke container, sidebar akan muncul */
+.container.sidebar-open {
+  grid-template-columns: 250px 1fr; /* Sidebar mengambil 250px, main content didorong */
+}
+
+.website-header {
+  grid-area: header;
+  background-color: var(--primary-color);
+  color: var(--sidebar-text);
+  padding: 20px 0;
+  text-align: center;
+  border-bottom: 2px solid #a83a6c;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* Gaya untuk pemusatan teks di header */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Animasi pulse telah dihapus di sini */
+}
+
+.website-header h1 {
+  margin: 0;
+  font-size: 2.2em;
+}
+
+/* Keyframes untuk animasi pulse telah dihapus dari sini */
+
+/* Sidebar sekarang menjadi bagian dari grid dan akan "mendorong" konten */
+.sidebar {
+  grid-area: sidebar; /* Menempatkan di area 'sidebar' */
+  background-color: var(--sidebar-bg);
+  color: var(--sidebar-text);
+  padding: 20px 0;
+  display: flex; /* Mengatur konten internal sidebar */
+  flex-direction: column;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden; /* Sembunyikan konten jika lebar kolom 0 */
+}
+
+.sidebar nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar nav ul li a {
+  display: block;
+  padding: 12px 20px;
+  color: var(--sidebar-text);
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.sidebar nav ul li a:hover,
+.sidebar nav ul li a.active {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.main-content {
+  grid-area: main; /* Menempatkan di area 'main' */
+  padding: 20px 30px;
+  background-color: var(--background-color);
+  display: flex; /* Menggunakan flexbox untuk mengelola sections anak */
+  flex-direction: column; /* Anak-anak akan ditumpuk secara vertikal */
+  height: 100%; /* Pastikan main-content mengisi tingginya di grid */
+}
+
+.main-content h2 {
+  color: var(--primary-color);
+  margin-bottom: 20px;
+  border-bottom: 2px solid var(--primary-color);
+  padding-bottom: 10px;
+}
+
+/* Gaya untuk bagian intro */
+#intro-section {
+  display: flex; /* Menggunakan flexbox untuk konten intro */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100%; /* Mengisi tinggi penuh main-content */
+  padding: 20px;
+  background-color: var(--card-background);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+}
+
+#intro-section p {
+  margin-top: 15px;
+  margin-bottom: 25px;
+  font-size: 1.1em;
+  color: #666;
+}
+
+/* Gaya untuk tombol utama (Jalankan Rekomendasi Musik) */
+.primary-button {
+  background-color: var(--primary-color);
+  color: var(--sidebar-text);
+  border: none;
+  padding: 12px 25px;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-size: 1.1em;
+  font-weight: 700;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.primary-button:hover {
+  background-color: #a83a6c;
+  transform: translateY(-2px);
+}
+
+/* Gaya untuk bagian rekomendasi musik dan detail sidebar */
+#music-recommendations,
+#sidebar-detail-content {
+  flex-grow: 1; /* Memungkinkan elemen untuk mengisi ruang vertikal yang tersedia */
+  width: 100%; /* Memastikan elemen mengisi seluruh lebar yang tersedia */
+  overflow-y: auto; /* Mengizinkan scrolling di dalam section jika kontennya terlalu panjang */
+  display: flex; /* Gunakan flexbox untuk konten internal */
+  flex-direction: column;
+}
+
+/* Memastikan elemen yang memiliki kelas 'hidden' tidak memakan ruang sama sekali */
+#music-recommendations.hidden,
+#sidebar-detail-content.hidden,
+#intro-section.hidden {
+  display: none;
+}
+
+.music-list {
+  /* Mengubah grid-template-columns agar kartu musik tersusun menurun ke bawah */
+  grid-template-columns: 1fr; /* Setiap kartu akan mengisi seluruh lebar yang tersedia, membuatnya bertumpuk vertikal */
+  gap: 20px;
+  /* Tambahan gaya untuk merapikan daftar */
+  list-style: none; /* Hapus bullet default jika ada */
+  padding: 0;
+  margin-top: 15px; /* Jarak dari judul 'Rekomendasi Musik' */
+}
+
+/* Gaya untuk elemen OL dalam music-list */
+.music-list ol {
+  padding-left: 20px; /* Indentasi untuk penomoran */
+  list-style: none; /* Hapus penomoran default browser */
+}
+
+/* Gaya untuk setiap item LI dalam daftar rekomendasi */
+.music-list ol li {
+  background-color: var(--card-background);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  padding: 15px 20px; /* Padding di dalam setiap item */
+  margin-bottom: 10px; /* Jarak antar item */
+  font-size: 1.1em;
+  color: var(--text-color);
+  display: flex; /* Menggunakan flexbox untuk konten dalam li */
+  align-items: center; /* Pusatkan secara vertikal */
+  gap: 10px; /* Jarak antara nomor dan teks lagu */
+}
+
+.music-card {
+  /* Ini mungkin tidak lagi relevan jika music-list menggunakan ol/li langsung, tapi biarkan dulu */
+  background-color: var(--card-background);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.2s ease-in-out;
+}
+
+.music-card:hover {
+  transform: translateY(-5px);
+}
+
+.music-card h3 {
+  color: var(--primary-color);
+  margin-bottom: 5px;
+  font-size: 1.3em;
+}
+
+.music-card p {
+  color: #555;
+  font-size: 0.9em;
+}
+
+#sidebar-detail-content #sidebar-content-placeholder {
+  /* Memastikan placeholder konten detail mengisi ruang yang tersedia */
+  flex-grow: 1;
+}
+
+#sidebar-detail-content h3 {
+  color: var(--primary-color);
+  margin-bottom: 15px;
+  text-align: center; /* Judul keterangan menjadi tengah */
+}
+
+#sidebar-detail-content p {
+  text-align: justify; /* Teks keterangan menjadi rata kanan kiri */
+}
+
+#sidebar-detail-content ul {
+  list-style: inside disc;
+  padding-left: 20px;
+}
+
+/* Gaya untuk tombol "Kembali ke Rekomendasi" (posisi fixed di pojok kiri bawah) */
+.back-button {
+  display: none; /* Sembunyikan secara default */
+  position: fixed; /* Posisi tetap di viewport */
+  bottom: 20px; /* Jarak dari bawah */
+  left: 20px; /* Jarak dari kiri */
+  background-color: var(--primary-color);
+  color: var(--sidebar-text);
+  border: none;
+  padding: 10px 15px;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-size: 1em;
+  z-index: 1000; /* Pastikan di atas elemen lain */
+  box-shadow: var(--shadow);
+  transition: background-color 0.2s ease;
+}
+
+.back-button:hover {
+  background-color: #a83a6c; /* Sedikit lebih gelap saat hover */
+}
+
+/* Kelas untuk menampilkan tombol kembali, dikontrol oleh JavaScript */
+.back-button.show {
+  display: block;
+}
+
+/* Sidebar Toggle Button (posisi fixed di pojok kiri atas) */
+.sidebar-toggle {
+  display: block; /* Selalu tampil */
+  position: fixed; /* Posisi tetap di viewport */
+  top: 20px; /* Jarak dari atas */
+  left: 20px; /* Jarak dari kiri */
+  background-color: var(--primary-color);
+  color: var(--sidebar-text);
+  border: none;
+  padding: 10px 15px;
+  font-size: 1.5em;
+  cursor: pointer;
+  border-radius: var(--border-radius);
+  z-index: 1001; /* Pastikan di atas elemen lain dan sidebar */
+  box-shadow: var(--shadow);
+}
+
+/* Media query untuk layar lebih kecil (tablet/mobile: overlay sidebar) */
+@media (max-width: 768px) {
+  body {
+    padding: 10px; /* Kurangi padding body di layar kecil */
+  }
+
+  .container {
+    /* Kembali ke tata letak single column untuk mobile */
+    grid-template-areas:
+      "header"
+      "main";
+    grid-template-columns: 1fr; /* Konten utama mengambil lebar penuh */
+    height: calc(100vh - 20px); /* Sesuaikan tinggi container di mobile */
+    transition: none; /* Nonaktifkan transisi grid pada mobile */
+  }
+
+  /* Sidebar akan menggunakan posisi fixed dan transform untuk overlay di mobile */
+  .sidebar {
+    position: fixed; /* Posisi tetap di viewport */
+    top: 0;
+    left: 0;
+    height: 100vh; /* Mengambil seluruh tinggi viewport */
+    width: 250px; /* Lebar sidebar */
+    transform: translateX(
+      -100%
+    ); /* Sembunyikan sidebar di luar layar secara default */
+    transition: transform 0.3s ease-in-out; /* Transisi untuk efek slide */
+    z-index: 999; /* Pastikan sidebar di atas konten utama */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Saat sidebar aktif di mobile, tampilkan dengan transform */
+  .sidebar.active {
+    transform: translateX(0);
+  }
+
+  /* Pastikan tombol tidak terlalu dekat dengan tepi di mobile */
+  .sidebar-toggle,
+  .back-button {
+    top: 10px;
+    left: 10px;
+    font-size: 1.2em; /* Sedikit lebih kecil di mobile */
+    padding: 8px 12px;
+  }
+  .back-button {
+    bottom: 10px;
+  }
+}

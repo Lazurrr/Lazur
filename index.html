@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rekomendasi Musik - Algoritma Greedy</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Tombol toggle sidebar (hamburger) yang akan selalu ada di pojok kiri atas -->
+    <button class="sidebar-toggle" aria-label="Toggle Sidebar">&#9776;</button>
+
+    <!-- Tombol kembali ke halaman utama yang akan selalu ada di pojok kiri bawah (visibilitas dikontrol JS) -->
+    <button id="backToHomeBtn" class="back-button">
+      ← Kembali ke Rekomendasi
+    </button>
+
+    <div class="container">
+      <header class="website-header">
+        <h1>Algoritma Greedy</h1>
+      </header>
+
+      <!-- Sidebar navigasi -->
+      <aside class="sidebar" id="sidebar">
+        <nav>
+          <ul>
+            <!-- Perubahan di sini: data-content dan teks menu -->
+            <li>
+              <a href="#" data-content="keterangan-website"
+                >Keterangan Website</a
+              >
+            </li>
+            <li><a href="#" data-content="dataset">Dataset</a></li>
+            <li>
+              <a href="#" data-content="anggota-kelompok">Anggota Kelompok</a>
+            </li>
+          </ul>
+        </nav>
+      </aside>
+
+      <main class="main-content">
+        <!-- Bagian intro dengan tombol untuk menjalankan rekomendasi -->
+        <section id="intro-section">
+          <h2>Selamat Datang di Rekomendasi Musik</h2>
+          <p>
+            Klik tombol di bawah untuk menjalankan algoritma greedy dan melihat
+            rekomendasi musik terbaik!
+          </p>
+          <button id="runRecommendationBtn" class="primary-button">
+            Jalankan Rekomendasi Musik
+          </button>
+        </section>
+
+        <!-- Bagian untuk menampilkan rekomendasi musik (tersembunyi secara default) -->
+        <section id="music-recommendations" class="hidden">
+          <h2>Rekomendasi Musik</h2>
+          <div class="music-list">
+            <!-- Data lagu akan dimuat di sini oleh JavaScript -->
+          </div>
+        </section>
+
+        <!-- Bagian untuk menampilkan detail konten dari sidebar (tersembunyi secara default) -->
+        <section id="sidebar-detail-content" class="hidden">
+          <div id="sidebar-content-placeholder"></div>
+        </section>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
