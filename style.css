@@ -33,6 +33,7 @@ body {
   align-items: flex-start; /* Konten dimulai dari atas */
   min-height: 100vh;
   padding: 20px; /* Padding di sekitar container utama */
+  font-size: 16px; /* Ukuran font dasar untuk seluruh body */
 }
 
 /* Container utama yang menggunakan CSS Grid untuk tata letak */
@@ -72,12 +73,11 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* Animasi pulse telah dihapus di sini */
 }
 
 .website-header h1 {
   margin: 0;
-  font-size: 2.2em;
+  font-size: 2.2em; /* Ukuran font desktop */
 }
 
 /* Sidebar sekarang menjadi bagian dari grid dan akan "mendorong" konten */
@@ -117,6 +117,7 @@ body {
   display: flex; /* Menggunakan flexbox untuk mengelola sections anak */
   flex-direction: column; /* Anak-anak akan ditumpuk secara vertikal */
   height: 100%; /* Pastikan main-content mengisi tingginya di grid */
+  overflow-y: auto; /* Aktifkan scrolling vertikal untuk konten utama */
 }
 
 .main-content h2 {
@@ -194,7 +195,7 @@ body {
 
 /* Gaya untuk elemen OL dalam music-list */
 .music-list ol {
-  padding-left: 20px; /* Indentasi untuk penomoran */
+  padding-left: 0; /* Hapus padding default OL */
   list-style: none; /* Hapus penomoran default browser */
 }
 
@@ -205,36 +206,11 @@ body {
   box-shadow: var(--shadow);
   padding: 15px 20px; /* Padding di dalam setiap item */
   margin-bottom: 10px; /* Jarak antar item */
-  font-size: 1.1em;
+  font-size: 1.1em; /* Ukuran font desktop */
   color: var(--text-color);
   display: flex; /* Menggunakan flexbox untuk konten dalam li */
   align-items: center; /* Pusatkan secara vertikal */
   gap: 10px; /* Jarak antara nomor dan teks lagu */
-}
-
-.music-card {
-  /* Ini mungkin tidak lagi relevan jika music-list menggunakan ol/li langsung, tapi biarkan dulu */
-  background-color: var(--card-background);
-  border-radius: var(--border-radius);
-  box-shadow: var(--shadow);
-  padding: 20px;
-  text-align: center;
-  transition: transform 0.2s ease-in-out;
-}
-
-.music-card:hover {
-  transform: translateY(-5px);
-}
-
-.music-card h3 {
-  color: var(--primary-color);
-  margin-bottom: 5px;
-  font-size: 1.3em;
-}
-
-.music-card p {
-  color: #555;
-  font-size: 0.9em;
 }
 
 #sidebar-detail-content #sidebar-content-placeholder {
@@ -250,6 +226,8 @@ body {
 
 #sidebar-detail-content p {
   text-align: justify; /* Teks keterangan menjadi rata kanan kiri */
+  word-wrap: break-word; /* Memastikan teks panjang membungkus */
+  hyphens: auto; /* Memungkinkan hyphenation untuk word-wrap yang lebih baik */
 }
 
 #sidebar-detail-content ul {
@@ -266,10 +244,11 @@ body {
   padding: 10px 15px;
   border-radius: var(--border-radius);
   cursor: pointer;
-  font-size: 1em;
+  font-size: 1em; /* Ukuran font desktop */
   margin-bottom: 20px; /* Memberikan jarak dari konten di bawahnya */
   transition: background-color 0.2s ease;
   align-self: flex-start; /* Posisikan di kiri dalam flex container */
+  white-space: nowrap; /* Mencegah tombol pecah baris di desktop jika teks terlalu panjang */
 }
 
 .back-button:hover {
@@ -291,7 +270,7 @@ body {
   color: var(--sidebar-text);
   border: none;
   padding: 10px 15px;
-  font-size: 1.5em;
+  font-size: 1.5em; /* Ukuran font desktop */
   cursor: pointer;
   border-radius: var(--border-radius);
   z-index: 1001; /* Pastikan di atas elemen lain dan sidebar */
@@ -334,6 +313,34 @@ body {
     transform: translateX(0);
   }
 
+  /* Penyesuaian ukuran font untuk mobile agar lebih seimbang dan mudah dibaca */
+  .website-header h1 {
+    font-size: 1.8em; /* Ukuran H1 lebih kecil untuk mobile */
+  }
+
+  .main-content h2 {
+    font-size: 1.4em; /* Ukuran H2 lebih kecil untuk mobile */
+  }
+
+  #intro-section p {
+    font-size: 0.95em; /* Sedikit lebih kecil dari desktop, tetap mudah dibaca */
+  }
+
+  .primary-button {
+    padding: 10px 20px;
+    font-size: 1em; /* Ukuran tombol utama disesuaikan */
+  }
+
+  .music-list ol li {
+    font-size: 1em; /* Ukuran font item daftar rekomendasi disesuaikan */
+    padding: 12px 15px; /* Padding item daftar dikurangi */
+  }
+
+  #sidebar-detail-content p,
+  #sidebar-detail-content ul li {
+    font-size: 0.95em; /* Ukuran font teks keterangan disesuaikan */
+  }
+
   /* Pastikan tombol tidak terlalu dekat dengan tepi di mobile */
   .sidebar-toggle {
     top: 10px;
@@ -347,5 +354,9 @@ body {
     padding: 8px 12px; /* Kurangi padding */
     font-size: 0.9em; /* Kurangi ukuran font */
     margin-bottom: 15px; /* Sesuaikan margin bawah */
+    /* Pastikan tidak ada posisi fixed lagi yang mengganggu */
+    position: static; /* Kembali ke posisi normal dalam aliran dokumen */
+    align-self: flex-start; /* Tetap rata kiri dalam flex container */
+    width: auto; /* Lebar otomatis */
   }
 }
