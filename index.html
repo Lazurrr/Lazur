@@ -11,24 +11,16 @@
     />
   </head>
   <body>
-    <!-- Tombol toggle sidebar (hamburger) yang akan selalu ada di pojok kiri atas -->
     <button class="sidebar-toggle" aria-label="Toggle Sidebar">&#9776;</button>
-
-    <!-- Tombol kembali ke halaman utama yang akan selalu ada di pojok kiri bawah (visibilitas dikontrol JS) -->
-    <button id="backToHomeBtn" class="back-button">
-      ← Kembali ke Rekomendasi
-    </button>
 
     <div class="container">
       <header class="website-header">
         <h1>Algoritma Greedy</h1>
       </header>
 
-      <!-- Sidebar navigasi -->
       <aside class="sidebar" id="sidebar">
         <nav>
           <ul>
-            <!-- Perubahan di sini: data-content dan teks menu -->
             <li>
               <a href="#" data-content="keterangan-website"
                 >Keterangan Website</a
@@ -43,7 +35,6 @@
       </aside>
 
       <main class="main-content">
-        <!-- Bagian intro dengan tombol untuk menjalankan rekomendasi -->
         <section id="intro-section">
           <h2>Selamat Datang di Rekomendasi Musik</h2>
           <p>
@@ -55,16 +46,15 @@
           </button>
         </section>
 
-        <!-- Bagian untuk menampilkan rekomendasi musik (tersembunyi secara default) -->
         <section id="music-recommendations" class="hidden">
           <h2>Rekomendasi Musik</h2>
-          <div class="music-list">
-            <!-- Data lagu akan dimuat di sini oleh JavaScript -->
-          </div>
+          <div class="music-list"></div>
         </section>
 
-        <!-- Bagian untuk menampilkan detail konten dari sidebar (tersembunyi secara default) -->
         <section id="sidebar-detail-content" class="hidden">
+          <button id="backToHomeBtn" class="back-button">
+            ← Kembali ke Rekomendasi
+          </button>
           <div id="sidebar-content-placeholder"></div>
         </section>
       </main>

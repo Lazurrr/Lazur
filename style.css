@@ -80,8 +80,6 @@ body {
   font-size: 2.2em;
 }
 
-/* Keyframes untuk animasi pulse telah dihapus dari sini */
-
 /* Sidebar sekarang menjadi bagian dari grid dan akan "mendorong" konten */
 .sidebar {
   grid-area: sidebar; /* Menempatkan di area 'sidebar' */
@@ -259,12 +257,9 @@ body {
   padding-left: 20px;
 }
 
-/* Gaya untuk tombol "Kembali ke Rekomendasi" (posisi fixed di pojok kiri bawah) */
+/* Gaya untuk tombol "Kembali ke Rekomendasi" (sekarang relatif terhadap parent content) */
 .back-button {
   display: none; /* Sembunyikan secara default */
-  position: fixed; /* Posisi tetap di viewport */
-  bottom: 20px; /* Jarak dari bawah */
-  left: 20px; /* Jarak dari kiri */
   background-color: var(--primary-color);
   color: var(--sidebar-text);
   border: none;
@@ -272,9 +267,9 @@ body {
   border-radius: var(--border-radius);
   cursor: pointer;
   font-size: 1em;
-  z-index: 1000; /* Pastikan di atas elemen lain */
-  box-shadow: var(--shadow);
+  margin-bottom: 20px; /* Memberikan jarak dari konten di bawahnya */
   transition: background-color 0.2s ease;
+  align-self: flex-start; /* Posisikan di kiri dalam flex container */
 }
 
 .back-button:hover {
@@ -340,14 +335,11 @@ body {
   }
 
   /* Pastikan tombol tidak terlalu dekat dengan tepi di mobile */
-  .sidebar-toggle,
-  .back-button {
+  .sidebar-toggle {
+    /* Hapus back-button dari sini karena posisinya sudah tidak fixed */
     top: 10px;
     left: 10px;
     font-size: 1.2em; /* Sedikit lebih kecil di mobile */
     padding: 8px 12px;
-  }
-  .back-button {
-    bottom: 10px;
   }
 }
