@@ -336,10 +336,16 @@ body {
 
   /* Pastikan tombol tidak terlalu dekat dengan tepi di mobile */
   .sidebar-toggle {
-    /* Hapus back-button dari sini karena posisinya sudah tidak fixed */
     top: 10px;
     left: 10px;
     font-size: 1.2em; /* Sedikit lebih kecil di mobile */
     padding: 8px 12px;
+  }
+
+  /* Penyesuaian ukuran tombol 'Kembali ke Rekomendasi' untuk mobile */
+  .back-button {
+    padding: 8px 12px; /* Kurangi padding */
+    font-size: 0.9em; /* Kurangi ukuran font */
+    margin-bottom: 15px; /* Sesuaikan margin bawah */
   }
 }
