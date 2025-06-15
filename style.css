@@ -351,12 +351,21 @@ body {
 
   /* Penyesuaian ukuran tombol 'Kembali ke Rekomendasi' untuk mobile */
   .back-button {
-    padding: 8px 12px; /* Kurangi padding */
-    font-size: 0.9em; /* Kurangi ukuran font */
+    padding: 8px 12px !important; /* Kurangi padding, gunakan !important untuk memastikan override */
+    font-size: 0.9em !important; /* Kurangi ukuran font, gunakan !important */
     margin-bottom: 15px; /* Sesuaikan margin bawah */
-    /* Pastikan tidak ada posisi fixed lagi yang mengganggu */
     position: static; /* Kembali ke posisi normal dalam aliran dokumen */
     align-self: flex-start; /* Tetap rata kiri dalam flex container */
     width: auto; /* Lebar otomatis */
+  }
+
+  /* Perbaikan untuk teks yang terpotong di sidebar detail content */
+  #sidebar-detail-content {
+    padding: 15px; /* Kurangi padding untuk memberi lebih banyak ruang bagi konten */
+  }
+
+  #sidebar-detail-content h3 {
+    font-size: 1.2em; /* Sesuaikan ukuran judul di detail sidebar */
+    margin-bottom: 10px;
   }
 }
