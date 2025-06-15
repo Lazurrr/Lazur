@@ -249,8 +249,7 @@ body {
   transition: background-color 0.2s ease;
   align-self: flex-start; /* Posisikan di kiri dalam flex container */
   white-space: nowrap; /* Mencegah tombol pecah baris di desktop jika teks terlalu panjang */
-  /* Menghilangkan posisi fixed untuk desktop juga */
-  position: static;
+  position: static; /* Pastikan posisi static di desktop juga */
 }
 
 .back-button:hover {
@@ -320,6 +319,10 @@ body {
     font-size: 1.6em; /* Ukuran H1 lebih kecil lagi untuk mobile */
   }
 
+  .main-content {
+    padding: 15px; /* Kurangi padding main-content di mobile */
+  }
+
   .main-content h2 {
     font-size: 1.2em; /* Ukuran H2 lebih kecil untuk mobile */
     margin-bottom: 15px;
@@ -341,6 +344,10 @@ body {
 
   #sidebar-detail-content {
     padding: 15px; /* Kurangi padding untuk memberi lebih banyak ruang bagi konten */
+    /* Memastikan konten mengisi lebar yang tersedia dan membungkus */
+    word-wrap: break-word; /* Wajib untuk teks panjang */
+    overflow-wrap: break-word; /* Alternatif modern */
+    hyphens: auto; /* Memungkinkan hyphenation */
   }
 
   #sidebar-detail-content h3 {
@@ -351,6 +358,7 @@ body {
   #sidebar-detail-content p,
   #sidebar-detail-content ul li {
     font-size: 0.85em; /* Ukuran font teks keterangan disesuaikan */
+    line-height: 1.4; /* Sesuaikan line-height untuk keterbacaan */
   }
 
   /* Pastikan tombol tidak terlalu dekat dengan tepi di mobile */
@@ -363,9 +371,12 @@ body {
 
   /* Penyesuaian ukuran tombol 'Kembali ke Rekomendasi' untuk mobile */
   .back-button {
-    padding: 6px 10px !important; /* Kurangi padding, gunakan !important untuk memastikan override */
-    font-size: 0.85em !important; /* Kurangi ukuran font, gunakan !important */
+    padding: 6px 10px; /* Kurangi padding */
+    font-size: 0.85em; /* Kurangi ukuran font */
     margin-bottom: 10px; /* Sesuaikan margin bawah */
-    /* Posisi sudah static, jadi ini akan mengalir dengan konten */
+    white-space: normal; /* Memastikan teks tombol membungkus jika terlalu panjang */
+    text-align: center; /* Pusatkan teks di tombol jika membungkus */
+    width: fit-content; /* Biarkan lebar tombol menyesuaikan konten */
+    max-width: 100%; /* Pastikan tidak melebihi lebar parent */
   }
 }
